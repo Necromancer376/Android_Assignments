@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Assignment2</string>
+    <string name="home">Home</string>
+    <string name="transfer_money">Transfer Money</string>
+    <string name="fixed_deposit">Fixed Deposit</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="error_name">Fill Valid Name</string>
+    <string name="error_phone">Fill Valid Phone Number</string>
+    <string name="error_email">Fill Valid Email</string>
+    <string name="error_pincode">Pincode should be 6 digits long</string>
+    <string name="error_confirm_pincode">Pincode not matching with confirm pincode</string>
+    <string name="error_invalid_credentials">Invalid Credentials</string>
+    <string name="error_no_user_exists">No Such User Exists</string>
+    <string name="error_insufficient_balance">Insufficient Balance</string>
+    <string name="error_transfer_name">Fill Transfer Name</string>
+    <string name="error_transfer_account">Fill Transfer Account Number</string>
+    <string name="error_transfer_ifsc">Fill Transfer IFSC Code</string>
+    <string name="error_transfer_amount">Fill Transfer Amount</string>
+    <string name="error_fd_amount">Fill FD Amount</string>
+
+    <string name="success_fd">FD Created Successfully</string>
+    <string name="success_transfer">Amount Transferred Successfully</string>
+
+    <string name="type">Type:</string>
+    <string name="name">Name</string>
+    <string name="phone_no">Phone No.</string>
+    <string name="email">Email</string>
+    <string name="confirm_pincode">Confirm Pincode</string>
+    <string name="pincode">Pincode</string>
+    <string name="acc_number">Account Number</string>
+    <string name="login">Login</string>
+    <string name="rate">Rate:</string>
+    <string name="register">Register</string>
+    <string name="create_user">create user</string>
+    <string name="create_fd">Create FD</string>
+    <string name="to_account_no">To Account No.</string>
+    <string name="to_name">To Name</string>
+    <string name="to_ifsc_code">To IFSC Code</string>
+    <string name="amount">Amount</string>
+    <string name="transfer">Transfer</string>
+
+    <string-array name="account_type">
+        <item>Current</item>
+        <item>Savings</item>
+    </string-array>
+
+    <string-array name="fd_duration">
+        <item>1 Month</item>
+        <item>3 Month</item>
+        <item>6 Month</item>
+        <item>1 Year</item>
+        <item>3 Year</item>
+        <item>5 Year</item>
+        <item>10 Year</item>
+    </string-array>
+
+</resources>

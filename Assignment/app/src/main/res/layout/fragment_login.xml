@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_primary"
+    tools:context=".LoginFragment"
+    android:paddingTop="40dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="4dp"
+        android:src="@drawable/logo"
+        android:background="@color/app_accents1"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_email"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:hint="@string/email"
+        app:boxStrokeColor="@color/app_accents2"
+        android:textColorHint="@color/app_accents2"
+        app:hintTextColor="@color/app_accents2"
+        android:fontFamily="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_logo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:textColor="@color/app_accents2"
+            android:fontFamily="monospace"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:hint="@string/password"
+        app:boxStrokeColor="@color/app_accents2"
+        android:textColorHint="@color/app_accents2"
+        app:hintTextColor="@color/app_accents2"
+        android:fontFamily="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_email"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/app_accents2" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:textColor="@color/app_accents2"
+            android:inputType="textPassword"
+            android:fontFamily="monospace"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/check_auto_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/til_password"
+        app:layout_constraintRight_toLeftOf="@+id/tv_auto_login"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_auto_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="4dp"
+        android:text="@string/keep_me_logged_in"
+        android:textColor="@color/app_secondary"
+        android:textSize="14sp"
+        android:fontFamily="monospace"
+        app:layout_constraintLeft_toRightOf="@+id/check_auto_login"
+        app:layout_constraintTop_toTopOf="@+id/check_auto_login"
+        app:layout_constraintBottom_toBottomOf="@id/check_auto_login"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="32dp"
+        android:background="@drawable/button_background"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="4dp"
+        android:text="@string/login"
+        android:textColor="#40513B"
+        android:textSize="20sp"
+        android:fontFamily="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_auto_login" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

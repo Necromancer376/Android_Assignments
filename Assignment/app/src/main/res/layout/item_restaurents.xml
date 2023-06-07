@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#E3F2D1"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
+
+    <FrameLayout
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/app_accents2" />
+
+    <LinearLayout
+        android:id="@+id/ll_item_expandable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_tv_exp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:padding="10dp"
+            android:textColor="@color/app_accents2"
+            android:textSize="22sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:padding="5dp"
+            android:textColor="@color/app_accents2"
+            android:textSize="18sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_tv_more_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:fontFamily="monospace"
+            android:paddingHorizontal="16dp"
+            android:text="@string/more_info"
+            android:textColor="@color/app_secondary" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="@string/authorized_info"
+                android:textColor="@color/app_accents2"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp"
+                    android:text="@string/authority_name"
+                    android:textColor="@color/app_accents2"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_tv_authority_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp"
+                    android:text=""
+                    android:textColor="@color/app_accents2"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:fontFamily="monospace"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="@string/scores"
+                android:textColor="@color/app_accents2"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:orientation="horizontal"
+                android:paddingVertical="4dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:paddingHorizontal="8dp"
+                    android:text="@string/hygine"
+                    android:textColor="@color/app_accents2"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_tv_score_hygine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:paddingHorizontal="8dp"
+                    android:text=""
+                    android:textColor="@color/app_accents2"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:orientation="horizontal"
+                android:paddingVertical="4dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:paddingHorizontal="8dp"
+                    android:text="@string/structural"
+                    android:textColor="@color/app_accents2"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_tv_score_structural"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:paddingHorizontal="8dp"
+                    android:text=""
+                    android:textColor="@color/app_accents2"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:orientation="horizontal"
+                android:paddingVertical="4dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:paddingHorizontal="8dp"
+                    android:text="@string/management"
+                    android:textColor="@color/app_accents2"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_tv_score_management"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:paddingHorizontal="8dp"
+                    android:text=""
+                    android:textColor="@color/app_accents2"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/item_tv_website"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="monospace"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:textColor="#0000EE"
+                android:textSize="14sp"
+                android:autoLink="web" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:padding="2dp"
+                android:orientation="horizontal">
+
+<!--                <fragment-->
+<!--                    android:id="@+id/item_map"-->
+<!--                    class="com.google.android.gms.maps.SupportMapFragment"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_margin="4dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:paddingHorizontal="16dp"-->
+<!--                    android:paddingVertical="8dp" />-->
+                <ImageView
+                    android:id="@+id/item_map"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/email_background">
+
+                    <TextView
+                        android:id="@+id/et_email_to"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        android:padding="1dp"
+                        android:layout_margin="1dp"
+                        android:textSize="14sp"
+                        android:fontFamily="monospace"
+                        android:hint="To:"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:textColorHint="@color/app_secondary"
+                        android:maxLines="1"
+                        android:textColor="@color/app_accents2" />
+
+
+                    <EditText
+                        android:id="@+id/et_email_subject"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        android:textSize="14sp"
+                        android:layout_margin="1dp"
+                        android:padding="1dp"
+                        android:fontFamily="monospace"
+                        android:hint="Subject:"
+                        android:textColorHint="@color/app_secondary"
+                        android:maxLines="1"
+                        android:textColor="@color/app_accents2" />
+
+
+                    <EditText
+                        android:id="@+id/et_email_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3"
+                        android:gravity="top"
+                        android:layout_margin="1dp"
+                        android:background="#00000000"
+                        android:padding="1dp"
+                        android:textSize="14sp"
+                        android:fontFamily="monospace"
+                        android:maxLines="1"
+                        android:textColor="@color/app_accents2"
+                        android:hint="Message:"
+                        android:textColorHint="@color/app_secondary"/>
+
+                    <ImageButton
+                        android:id="@+id/btn_email_send"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|right"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="#E3F2D1"
+                        android:src="@drawable/ic_send" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <RatingBar
+                android:id="@+id/item_rating"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:paddingVertical="8dp"
+                android:progressTint="@color/rating_stars"
+                android:secondaryProgressTint="@color/rating_stars"
+                android:stepSize="1" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/item_tv_less_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:fontFamily="monospace"
+                android:paddingHorizontal="16dp"
+                android:text="@string/less_info"
+                android:textColor="@color/app_secondary" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
