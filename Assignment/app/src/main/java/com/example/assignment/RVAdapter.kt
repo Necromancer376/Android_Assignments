@@ -1,5 +1,6 @@
 package com.example.assignment
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -11,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -22,9 +24,11 @@ import com.example.components2.Restaurant
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.snackbar.Snackbar
 
 class RVAdapter(private val list: ArrayList<Restaurant>,
                 val context: Context,
+                val activity: Activity,
                 val savedInstanceState: Bundle?) :
     RecyclerView.Adapter<RVAdapter.MyViewHolder>() {
 
@@ -108,7 +112,7 @@ class RVAdapter(private val list: ArrayList<Restaurant>,
                 context.startActivity(intent)
             }
             else {
-                Toast.makeText(context, "No Location Data Available", Toast.LENGTH_SHORT).show()
+                showErrorSnackBar("No Location Data Available", true)
             }
         }
 
@@ -148,5 +152,28 @@ class RVAdapter(private val list: ArrayList<Restaurant>,
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    fun showErrorSnackBar(msg: String, errorMsg: Boolean) {
+        val snackbar = Snackbar.make(activity.findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG)
+        val snackbarView = snackbar.view
+
+        if(errorMsg) {
+            snackbarView.setBackgroundColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.colorSnackbarError
+                )
+            )
+        }
+        else {
+            snackbarView.setBackgroundColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.colorSnackbarSuccess
+                )
+            )
+        }
+        snackbar.show()
     }
 }

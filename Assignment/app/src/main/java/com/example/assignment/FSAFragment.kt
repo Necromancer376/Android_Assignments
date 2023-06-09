@@ -84,7 +84,7 @@ class FSAFragment : Fragment() {
             )
             list.add( res ) }
 
-        val adapter = RVAdapter(list, requireContext(), savedInstanceState)
+        val adapter = RVAdapter(list, requireContext(), requireActivity(), savedInstanceState)
         rv_dashboard.adapter = adapter
     }
 }
