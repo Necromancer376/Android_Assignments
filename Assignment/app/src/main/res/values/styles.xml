@@ -4,4 +4,20 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="my_dialog_theme" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="colorAccent">@color/app_accents2</item>                   <!--header background-->
+        <item name="android:windowBackground">@color/app_primary</item>     <!--calendar background-->
+        <item name="android:colorControlActivated">@color/app_accents1</item> <!--selected day-->
+        <item name="android:textColor">@color/app_accents2</item>
+        <item name="android:textColorPrimary">@color/app_accents2</item> <!--days of the month-->
+        <item name="android:textColorSecondary">@color/app_accents2</item>    <!--days of the week-->
+    </style>
+
+    <style name="MyTimePickerDialogTheme" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">@color/app_accents2</item>
+        <item name="colorAccent">@color/app_accents2</item>
+        <item name="android:windowBackground">@color/app_primary</item>     <!--calendar background-->
+        <item name="android:colorControlActivated">@color/app_accents1</item> <!--selected day-->
+    </style>
 </resources>

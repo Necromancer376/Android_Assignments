@@ -23,6 +23,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
@@ -107,8 +108,11 @@ class RegisterFragment : BaseFragment(),
     }
 
     private fun pickImage() {
-        var intent = Intent("android.provider.action.PICK_IMAGES")
-        startActivityForResult(intent, 101)
+        ImageBottomSheet(requireActivity())
+            .show(requireActivity().supportFragmentManager, "newTaskTag")
+
+//        var intent = Intent("android.provider.action.PICK_IMAGES")
+//        startActivityForResult(intent, 101)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -139,7 +143,9 @@ class RegisterFragment : BaseFragment(),
 
     fun pickDate() {
         pickDateCalander()
-        DatePickerDialog(requireContext(), this, year, month, day).show()
+        var datePicker = DatePickerDialog(requireContext(), R.style.MyTimePickerDialogTheme, this, year, month, day)
+        datePicker.datePicker.maxDate= System.currentTimeMillis() - 568025136000L
+        datePicker.show()
     }
 
     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
@@ -152,4 +158,5 @@ class RegisterFragment : BaseFragment(),
 
     fun String.isValidEmail() =
         !TextUtils.isEmpty(this) && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
 }

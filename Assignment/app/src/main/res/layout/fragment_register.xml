@@ -19,7 +19,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
         app:strokeColor="@color/app_accents2"
-        app:strokeWidth="2dp" />
+        app:strokeWidth="2dp"
+        android:scaleType="fitXY" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_email"

@@ -100,11 +100,16 @@ class RVAdapter(private val list: ArrayList<Restaurant>,
         }
 
         holder.map.setOnClickListener {
-            val intent = Intent(context, MapActivity::class.java)
-            intent.putExtra("latitude", restaurant.latitude)
-            intent.putExtra("longitude", restaurant.longitude)
 
-            context.startActivity(intent)
+            if(restaurant.latitude != "" && restaurant.longitude != "") {
+                val intent = Intent(context, MapActivity::class.java)
+                intent.putExtra("latitude", restaurant.latitude)
+                intent.putExtra("longitude", restaurant.longitude)
+                context.startActivity(intent)
+            }
+            else {
+                Toast.makeText(context, "No Location Data Available", Toast.LENGTH_SHORT).show()
+            }
         }
 
         holder.moreinfo.setOnClickListener {
