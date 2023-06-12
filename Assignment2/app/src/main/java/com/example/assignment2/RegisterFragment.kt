@@ -1,24 +1,18 @@
 package com.example.assignment2
 
-import android.content.Context
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Patterns
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_register.*
-import java.io.Serializable
-import java.util.*
 
 
 class RegisterFragment : BaseFragment() {
+
+    private var acc_type = "Current"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,12 +27,9 @@ class RegisterFragment : BaseFragment() {
 
         requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
-//        var randomGenerator = Random(System.currentTimeMillis())
-
-        val crn = (10000000..99999999).random()
-        val acc = (10000000000..99999999999).random()
-        val ifsc = (10000000000..99999999999).random()
-        var acc_type = "Current"
+//        val crn = (10000000..99999999).random()
+//        val acc = (10000000000..99999999999).random()
+//        val ifsc = (10000000000..99999999999).random()
 
         // Next
         btn_next_register.setOnClickListener {
@@ -48,6 +39,15 @@ class RegisterFragment : BaseFragment() {
             if(et_name.text!!.length < 4)
                 showErrorSnackBar(getString(R.string.error_name), true)
 
+            else if(et_acc.text!!.length != 11)
+                showErrorSnackBar(getString(R.string.error_phone), true)
+
+            else if(et_crn.text!!.length != 9)
+                showErrorSnackBar(getString(R.string.error_phone), true)
+
+            else if(et_ifsc.text!!.length != 11)
+                showErrorSnackBar(getString(R.string.error_phone), true)
+
             else if(et_phone.text!!.length != 10)
                 showErrorSnackBar(getString(R.string.error_phone), true)
 
@@ -55,30 +55,15 @@ class RegisterFragment : BaseFragment() {
                 showErrorSnackBar(getString(R.string.error_email), true)
 
             else {
-
-                val user = User(
-                    et_name.text.toString(),
-                    crn.toString(),
-                    acc.toString(),
-                    et_phone.text.toString(),
-                    acc_type,
-                    et_email.text.toString(),
-                    ifsc.toString()
-                )
-
-                val bundle = Bundle()
-                bundle.putSerializable("registerUser", user)
-
-                val fragment = RegisterFragment2()
-                fragment.arguments = bundle
-
-                val transaction = parentFragmentManager.beginTransaction()
-                transaction.replace(R.id.fragment_container, fragment)
-                transaction.commit()
+                addUser()
             }
         }
 
-        //Spinner
+        setupSpinner()
+    }
+
+    private fun setupSpinner() {
+
         val adapter = ArrayAdapter<String>(
             requireContext(),
             androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
@@ -99,11 +84,26 @@ class RegisterFragment : BaseFragment() {
         }
     }
 
-    fun String.isValidEmail() =
-        !TextUtils.isEmpty(this) && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+    private fun addUser() {
+        val user = User(
+            et_name.text.toString(),
+            et_crn.text.toString(),
+            et_acc.text.toString(),
+            et_phone.text.toString(),
+            acc_type,
+            et_email.text.toString(),
+            et_ifsc.text.toString()
+        )
 
-    fun View.hideKeyboard() {
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(windowToken, 0)
+        val bundle = Bundle()
+        bundle.putSerializable("registerUser", user)
+
+        val fragment = RegisterFragment2()
+        fragment.arguments = bundle
+
+        val transaction = parentFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.addToBackStack(this.toString())
+        transaction.commit()
     }
 }

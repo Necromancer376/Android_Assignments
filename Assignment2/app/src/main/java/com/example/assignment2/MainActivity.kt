@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var header_profile: ImageView
     lateinit var header_name: TextView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,23 +41,22 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        accountNo = intent.getStringExtra("ACCNO") as String
+        accountNo = intent.getStringExtra(Constants.ACCNO) as String
 
-        val sharedPreferences = getSharedPreferences("UserPreference", MODE_PRIVATE)
-        val json = sharedPreferences.getString(accountNo, null)
+        val json = PrefUtils.with(this).getUser(accountNo)
         user = Gson().fromJson(json, User::class.java)
 
         showInfo()
 
         btn_transfer.setOnClickListener {
             val intent = Intent(this@MainActivity, TransferMoneyActivity::class.java)
-            intent.putExtra("USERACC", user.accNo)
+            intent.putExtra(Constants.USERACC, user.accNo)
             startActivity(intent)
         }
 
         btn_fd.setOnClickListener {
             val intent = Intent(this@MainActivity, FDActivity::class.java)
-            intent.putExtra("USERACC", user.accNo)
+            intent.putExtra(Constants.USERACC, user.accNo)
             startActivity(intent)
         }
 
@@ -74,12 +74,12 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId) {
                 R.id.mItem2 -> {
                     val intent = Intent(this@MainActivity, TransferMoneyActivity::class.java)
-                    intent.putExtra("USERACC", user.accNo)
+                    intent.putExtra(Constants.USERACC, user.accNo)
                     startActivity(intent)
                 }
                 R.id.mItem3 -> {
                     val intent = Intent(this@MainActivity, FDActivity::class.java)
-                    intent.putExtra("USERACC", user.accNo)
+                    intent.putExtra(Constants.USERACC, user.accNo)
                     startActivity(intent)
                 }
             }
@@ -99,8 +99,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        val sharedPreferences = getSharedPreferences("UserPreference", MODE_PRIVATE)
-        val json = sharedPreferences.getString(accountNo, null)
+        val json = PrefUtils.with(this).getUser(accountNo)
         user = Gson().fromJson(json, User::class.java)
 
         showInfo()

@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_register2.*
 
 class RegisterFragment2 : BaseFragment() {
 
+    private lateinit var user: User
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +29,7 @@ class RegisterFragment2 : BaseFragment() {
         requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
 
-        val user: User = arguments?.getSerializable("registerUser") as User
+        user = arguments?.getSerializable("registerUser") as User
 
         tv_reg_acc.text = user.accNo
         tv_reg_crn.text = user.crnNo
@@ -45,29 +46,17 @@ class RegisterFragment2 : BaseFragment() {
                 showErrorSnackBar(getString(R.string.error_confirm_pincode), true)
             }
             else {
-                val accNo = user.accNo
-
-                user.pincode = et_pincode.text.toString()
-
-                val jsonUser: String = Gson().toJson(user)
-                Log.e("user", jsonUser)
-
-                val sharedPreferences = requireActivity()
-                    .getSharedPreferences("UserPreference", Context.MODE_PRIVATE)
-
-                val editor = sharedPreferences.edit()
-                editor.apply {
-                    putString(accNo.toString(), jsonUser)
-                }.apply()
-
-                val intent = Intent(requireContext(), LoginActivity::class.java)
-                startActivity(intent)
+                registerUser()
             }
         }
     }
 
-    fun View.hideKeyboard() {
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(windowToken, 0)
+    private fun registerUser() {
+        user.pincode = et_pincode.text.toString()
+
+        PrefUtils.with(requireContext()).saveUser(user)
+
+        val intent = Intent(requireContext(), LoginActivity::class.java)
+        startActivity(intent)
     }
 }
