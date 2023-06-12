@@ -31,9 +31,9 @@ class RegisterFragment2 : BaseFragment() {
 
         user = arguments?.getSerializable("registerUser") as User
 
-        tv_reg_acc.text = user.accNo
-        tv_reg_crn.text = user.crnNo
-        tv_reg_ifsc.text = user.ifscCode
+//        tv_reg_acc.text = user.accNo
+//        tv_reg_crn.text = user.crnNo
+//        tv_reg_ifsc.text = user.ifscCode
 
         btn_save_user.setOnClickListener {
 

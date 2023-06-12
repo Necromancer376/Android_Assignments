@@ -122,18 +122,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun pickImage() {
-        var intent = Intent("android.provider.action.PICK_IMAGES")
-        startActivityForResult(intent, 101)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(resultCode == Activity.RESULT_OK) {
-            if(requestCode == 101) {
-                val uri = data?.data
-                img_nav_profile.setImageURI(uri)
-            }
-        }
+        ImageBottomSheet(this)
+            .show(supportFragmentManager, "newTaskTag")
     }
 }

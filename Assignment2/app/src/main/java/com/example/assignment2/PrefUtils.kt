@@ -15,10 +15,8 @@ class PrefUtils {
         private lateinit var editor: SharedPreferences.Editor
 
         fun with(context: Context): PrefUtils {
-//            if (prefUtils == null)
-//                prefUtils = Builder(context).build()
             prefUtils = PrefUtils(context)
-            return prefUtils as PrefUtils
+            return prefUtils
         }
     }
 

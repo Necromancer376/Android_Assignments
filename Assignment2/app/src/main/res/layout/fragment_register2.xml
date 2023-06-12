@@ -25,95 +25,7 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp" >
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Account No: "
-            android:fontFamily="monospace"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="5dp" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_reg_acc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="crn number"
-            android:fontFamily="monospace"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="5dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp"
-        android:layout_marginHorizontal="16dp" >
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CRN No: "
-            android:fontFamily="monospace"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="5dp" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_reg_crn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="crn number"
-            android:fontFamily="monospace"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="5dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp" >
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="IFSC Code: "
-            android:fontFamily="monospace"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="5dp" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_reg_ifsc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="crn number"
-            android:fontFamily="monospace"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="5dp"/>
-    </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_pincode"
@@ -175,3 +87,93 @@
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
+
+<!--<LinearLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:orientation="horizontal"-->
+<!--android:layout_marginTop="16dp"-->
+<!--android:layout_marginHorizontal="16dp" >-->
+
+<!--<com.google.android.material.textview.MaterialTextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="Account No: "-->
+<!--    android:fontFamily="monospace"-->
+<!--    android:textStyle="bold"-->
+<!--    android:textSize="18sp"-->
+<!--    android:textColor="@color/black"-->
+<!--    android:layout_gravity="center_horizontal"-->
+<!--    android:layout_marginVertical="5dp" />-->
+
+<!--<com.google.android.material.textview.MaterialTextView-->
+<!--    android:id="@+id/tv_reg_acc"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="crn number"-->
+<!--    android:fontFamily="monospace"-->
+<!--    android:textSize="18sp"-->
+<!--    android:textColor="@color/black"-->
+<!--    android:layout_gravity="center_horizontal"-->
+<!--    android:layout_marginVertical="5dp"/>-->
+<!--</LinearLayout>-->
+
+<!--<LinearLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:orientation="horizontal"-->
+<!--android:layout_marginTop="8dp"-->
+<!--android:layout_marginHorizontal="16dp" >-->
+
+<!--<com.google.android.material.textview.MaterialTextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="CRN No: "-->
+<!--    android:fontFamily="monospace"-->
+<!--    android:textStyle="bold"-->
+<!--    android:textSize="18sp"-->
+<!--    android:textColor="@color/black"-->
+<!--    android:layout_gravity="center_horizontal"-->
+<!--    android:layout_marginVertical="5dp" />-->
+
+<!--<com.google.android.material.textview.MaterialTextView-->
+<!--    android:id="@+id/tv_reg_crn"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="crn number"-->
+<!--    android:fontFamily="monospace"-->
+<!--    android:textSize="18sp"-->
+<!--    android:textColor="@color/black"-->
+<!--    android:layout_gravity="center_horizontal"-->
+<!--    android:layout_marginVertical="5dp"/>-->
+<!--</LinearLayout>-->
+
+<!--<LinearLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:orientation="horizontal"-->
+<!--android:layout_marginTop="16dp"-->
+<!--android:layout_marginHorizontal="16dp" >-->
+
+<!--<com.google.android.material.textview.MaterialTextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="IFSC Code: "-->
+<!--    android:fontFamily="monospace"-->
+<!--    android:textStyle="bold"-->
+<!--    android:textSize="18sp"-->
+<!--    android:textColor="@color/black"-->
+<!--    android:layout_gravity="center_horizontal"-->
+<!--    android:layout_marginVertical="5dp" />-->
+
+<!--<com.google.android.material.textview.MaterialTextView-->
+<!--    android:id="@+id/tv_reg_ifsc"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="crn number"-->
+<!--    android:fontFamily="monospace"-->
+<!--    android:textSize="18sp"-->
+<!--    android:textColor="@color/black"-->
+<!--    android:layout_gravity="center_horizontal"-->
+<!--    android:layout_marginVertical="5dp"/>-->
+<!--</LinearLayout>-->
