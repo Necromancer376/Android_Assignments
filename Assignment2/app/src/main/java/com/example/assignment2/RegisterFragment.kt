@@ -36,27 +36,27 @@ class RegisterFragment : BaseFragment() {
 
             it.hideKeyboard()
 
-        }
-        if(et_name.text!!.length < 4)
-            showErrorSnackBar(getString(R.string.error_name), true)
+            if(et_name.text!!.length < 4)
+                showErrorSnackBar(getString(R.string.error_name), true)
 
-        else if(et_acc.text!!.length != 11)
-            showErrorSnackBar(getString(R.string.error_account), true)
+            else if(et_acc.text!!.length != 11)
+                showErrorSnackBar(getString(R.string.error_account), true)
 
-        else if(et_crn.text!!.length != 9)
-            showErrorSnackBar(getString(R.string.error_crn), true)
+            else if(et_crn.text!!.length != 9)
+                showErrorSnackBar(getString(R.string.error_crn), true)
 
-        else if(et_ifsc.text!!.length != 11)
-            showErrorSnackBar(getString(R.string.error_ifsc), true)
+            else if(et_ifsc.text!!.length != 11)
+                showErrorSnackBar(getString(R.string.error_ifsc), true)
 
-        else if(et_phone.text!!.length != 10)
-            showErrorSnackBar(getString(R.string.error_phone), true)
+            else if(et_phone.text!!.length != 10)
+                showErrorSnackBar(getString(R.string.error_phone), true)
 
-        else if(et_email.text!!.isEmpty() || !et_email.text.toString().isValidEmail())
-            showErrorSnackBar(getString(R.string.error_email), true)
+            else if(et_email.text!!.isEmpty() || !et_email.text.toString().isValidEmail())
+                showErrorSnackBar(getString(R.string.error_email), true)
 
-        else {
-            addUser()
+            else {
+                addUser()
+            }
         }
 
         setupSpinner()
