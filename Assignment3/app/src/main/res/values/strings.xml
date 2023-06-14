@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Assignment2</string>
+    <string name="app_name">Assignment3</string>
 
     <string name="home">Home</string>
     <string name="transfer_money">Transfer Money</string>
@@ -7,12 +7,9 @@
 
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="error_name">Fill Valid Name</string>
     <string name="error_phone">Fill Valid Phone Number</string>
-    <string name="error_account">Fill Valid Account Number</string>
-    <string name="error_ifsc">Fill Valid IFSC Number</string>
-    <string name="error_crn">Fill Valid CRN Number</string>
     <string name="error_email">Fill Valid Email</string>
     <string name="error_pincode">Pincode should be 6 digits long</string>
     <string name="error_confirm_pincode">Pincode not matching with confirm pincode</string>
@@ -61,6 +58,7 @@
         <item>5 Year</item>
         <item>10 Year</item>
     </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
