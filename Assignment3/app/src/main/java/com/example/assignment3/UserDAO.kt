@@ -31,8 +31,8 @@ interface UserDAO {
     @Query("UPDATE users SET balance = balance - :amount WHERE accNo = :accSend")
     fun reduceMoney(accSend: String, amount: Double)
 
-    @Query("UPDATE users SET balance = balance + :amount WHERE accNo = :accRecv")
-    fun addMoney(accRecv: String, amount: Double)
+    @Query("UPDATE users SET balance = balance + :amount WHERE accNo = :accReceive")
+    fun addMoney(accReceive: String, amount: Double)
 
     fun transferMoney(accSend: String, accRecv: String, amount: Double) =
         run {
