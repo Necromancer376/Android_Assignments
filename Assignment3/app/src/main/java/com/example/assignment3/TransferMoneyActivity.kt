@@ -1,11 +1,130 @@
 package com.example.assignment3
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.work.*
+import com.example.assignment3.databinding.ActivityTransferMoneyBinding
+import java.time.LocalDate
 
-class TransferMoneyActivity : AppCompatActivity() {
+class TransferMoneyActivity : BaseActivity() {
+
+    private lateinit var binding: ActivityTransferMoneyBinding
+    private lateinit var accountNo: String
+    private lateinit var transaction: Transactions
+
+    private var balance: Double? = 0.0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_transfer_money)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        binding = ActivityTransferMoneyBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setupActionBar()
+
+        accountNo = intent.getStringExtra(Constants.ACCOUNTNO)!!
+        balance = DBUtils.with(this).getDB().userDao().getBalance(accountNo)
+
+        binding.btnTransfer.setOnClickListener {
+            it.hideKeyboard()
+            validateTransfer()
+        }
+    }
+
+    private fun validateTransfer() {
+
+        if(binding.etTransferName.text!!.isEmpty()) {
+            showErrorSnackBar(getString(R.string.error_transfer_name), true)
+        }
+
+        else if(binding.etTransferAccount.text!!.length != 11) {
+            showErrorSnackBar(getString(R.string.error_transfer_account), true)
+        }
+
+        else if(binding.etTransferAccount.text!!.toString() == accountNo) {
+            showErrorSnackBar(getString(R.string.error_acc_duplicate), true)
+        }
+
+        else if(binding.etTransferIfsc.text!!.length != 11) {
+            showErrorSnackBar(getString(R.string.error_transfer_ifsc), true)
+        }
+
+        else if(binding.etTransferAmount.text!!.isEmpty()) {
+            showErrorSnackBar(getString(R.string.error_transfer_amount), true)
+        }
+
+        else if(binding.etTransferAmount.text.toString().toDouble() > balance!!) {
+            showErrorSnackBar(getString(R.string.error_insufficient_balance), true)
+        }
+
+        else {
+            transferMoney()
+        }
+    }
+
+    private fun transferMoney() {
+
+        val receiver = binding.etTransferAccount.text.toString()
+        val amount = binding.etTransferAmount.text.toString().toDouble()
+
+        DBUtils.with(this).getDB().userDao()
+            .transferMoney(accountNo, receiver, amount)
+
+        transaction = Transactions(
+            accountNo,
+            receiver,
+            amount,
+            LocalDate.now().toString()
+        )
+
+        Log.e("transaction", transaction.toString())
+        saveReceiptDialog()
+        showErrorSnackBar(getString(R.string.success_transfer), false)
+    }
+
+    fun saveReceiptDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("Download Receipt of the Transaction")
+        builder.setTitle("Receipt Download")
+        builder.setCancelable(false)
+
+        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener { dialogInterface, i ->
+            Log.e("Dialog", "Yes")
+
+            val downloadWorkRequest = OneTimeWorkRequest.Builder(DownloadWorker::class.java)
+            val data = Data.Builder()
+            val filename = "transaction_" + transaction.id.toString() + ".txt"
+            data.putString("FILE_CONTENT", transaction.toString())
+            data.putString("FILE_NAME", filename)
+            downloadWorkRequest.setInputData(data.build())
+
+            WorkManager.getInstance(this).enqueue(downloadWorkRequest.build())
+
+            dialogInterface.cancel()
+        }))
+
+        builder.setNegativeButton("No", (DialogInterface.OnClickListener { dialogInterface, i ->
+            Log.e("Dialog", "Yes")
+            dialogInterface.cancel()
+        }))
+
+        val downloadDialog = builder.create()
+        downloadDialog.show()
+    }
+
+    private fun setupActionBar() {
+        setSupportActionBar(binding.toolbarTransferActivity)
+
+        val actionBar = supportActionBar
+        if(actionBar != null) {
+            actionBar.title = ""
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+        }
+
+        binding.toolbarTransferActivity.setNavigationOnClickListener{ onBackPressed() }
     }
 }

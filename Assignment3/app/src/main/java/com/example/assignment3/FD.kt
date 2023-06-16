@@ -6,12 +6,11 @@ import java.time.LocalDate
 import java.util.*
 
 
-@Entity(tableName = "fds")
 data class FD(
     val accountNumber: String,
     val amount: Double,
     val duration: Int,
     val rate: Double,
     var date: String,
-    @PrimaryKey(autoGenerate = true) val id: Int = 0
+    val id: UUID = UUID.randomUUID()
 )

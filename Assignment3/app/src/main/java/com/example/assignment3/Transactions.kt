@@ -5,11 +5,10 @@ import androidx.room.PrimaryKey
 import java.time.LocalDate
 import java.util.*
 
-@Entity(tableName = "transactions")
 data class Transactions (
-    val accountSender: String,
-    val accountReceiver: String,
+    val sender: String,
+    val receiver: String,
     val amount: Double,
     var date: String,
-    @PrimaryKey(autoGenerate = true) val id: Int = 0
+    val id: UUID = UUID.randomUUID()
 )
