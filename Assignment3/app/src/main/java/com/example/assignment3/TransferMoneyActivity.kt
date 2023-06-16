@@ -49,31 +49,19 @@ class TransferMoneyActivity : BaseActivity() {
 
     private fun validateTransfer() {
 
-        if(binding.etTransferName.text!!.isEmpty()) {
+        if (binding.etTransferName.text!!.isEmpty()) {
             showErrorSnackBar(getString(R.string.error_transfer_name), true)
-        }
-
-        else if(binding.etTransferAccount.text!!.length != 11) {
+        } else if (binding.etTransferAccount.text!!.length != 11) {
             showErrorSnackBar(getString(R.string.error_transfer_account), true)
-        }
-
-        else if(binding.etTransferAccount.text!!.toString() == accountNo) {
+        } else if (binding.etTransferAccount.text!!.toString() == accountNo) {
             showErrorSnackBar(getString(R.string.error_acc_duplicate), true)
-        }
-
-        else if(binding.etTransferIfsc.text!!.length != 11) {
+        } else if (binding.etTransferIfsc.text!!.length != 11) {
             showErrorSnackBar(getString(R.string.error_transfer_ifsc), true)
-        }
-
-        else if(binding.etTransferAmount.text!!.isEmpty()) {
+        } else if (binding.etTransferAmount.text!!.isEmpty()) {
             showErrorSnackBar(getString(R.string.error_transfer_amount), true)
-        }
-
-        else if(binding.etTransferAmount.text.toString().toDouble() > balance!!) {
+        } else if (binding.etTransferAmount.text.toString().toDouble() > balance!!) {
             showErrorSnackBar(getString(R.string.error_insufficient_balance), true)
-        }
-
-        else {
+        } else {
             transferMoney()
         }
     }
@@ -83,19 +71,31 @@ class TransferMoneyActivity : BaseActivity() {
         val receiver = binding.etTransferAccount.text.toString()
         val amount = binding.etTransferAmount.text.toString().toDouble()
 
-        DBUtils.with(this).getDB().userDao()
-            .transferMoney(accountNo, receiver, amount)
+        DBUtils.with(this).getDB().userDao().getUser(receiver).observe(this) {
+            if (it.isEmpty()) {
+                showErrorSnackBar(getString(R.string.error_no_user_exists), true)
+            }
+            else {
+                if(it.first().ifscCode != binding.etTransferIfsc.text.toString()) {
+                    showErrorSnackBar("IFSC No. does not match", true)
+                }
+                else {
+                    DBUtils.with(this).getDB().userDao()
+                        .transferMoney(accountNo, receiver, amount)
 
-        transaction = Transactions(
-            accountNo,
-            receiver,
-            amount,
-            LocalDate.now().toString()
-        )
+                    transaction = Transactions(
+                        accountNo,
+                        receiver,
+                        amount,
+                        LocalDate.now().toString()
+                    )
 
-        Log.e("transaction", transaction.toString())
-        saveReceiptDialog()
-        showErrorSnackBar(getString(R.string.success_transfer), false)
+                    Log.e("transaction", transaction.toString())
+                    saveReceiptDialog()
+                    showErrorSnackBar(getString(R.string.success_transfer), false)
+                }
+            }
+        }
     }
 
     fun saveReceiptDialog() {
@@ -132,12 +132,12 @@ class TransferMoneyActivity : BaseActivity() {
         setSupportActionBar(binding.toolbarTransferActivity)
 
         val actionBar = supportActionBar
-        if(actionBar != null) {
+        if (actionBar != null) {
             actionBar.title = ""
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
 
-        binding.toolbarTransferActivity.setNavigationOnClickListener{ onBackPressed() }
+        binding.toolbarTransferActivity.setNavigationOnClickListener { onBackPressed() }
     }
 }
