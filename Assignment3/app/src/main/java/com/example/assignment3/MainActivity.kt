@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.ImageView
@@ -51,18 +52,18 @@ class MainActivity : AppCompatActivity() {
             binding.viewModel = userViewModel
             setupHeader()
         }
+    }
 
-        binding.btnFd.setOnClickListener {
-            val intent = Intent(this@MainActivity, FDActivity::class.java)
-            intent.putExtra(Constants.ACCOUNTNO, accountNo)
-            startActivity(intent)
-        }
+    fun toTransferActivity(view: View) {
+        val intent = Intent(this@MainActivity, TransferMoneyActivity::class.java)
+        intent.putExtra(Constants.ACCOUNTNO, accountNo)
+        startActivity(intent)
+    }
 
-        binding.btnTransfer.setOnClickListener {
-            val intent = Intent(this@MainActivity, TransferMoneyActivity::class.java)
-            intent.putExtra(Constants.ACCOUNTNO, accountNo)
-            startActivity(intent)
-        }
+    fun toFDActivity(view: View) {
+        val intent = Intent(this@MainActivity, TransferMoneyActivity::class.java)
+        intent.putExtra(Constants.ACCOUNTNO, accountNo)
+        startActivity(intent)
     }
 
     override fun onResume() {

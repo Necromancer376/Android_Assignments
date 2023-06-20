@@ -16,6 +16,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
@@ -29,6 +30,7 @@ class FDActivity : BaseActivity() {
     private lateinit var fd: FD
     private lateinit var accountNo: String
     private var balance: Double? = 0.0
+    lateinit var userViewModel: UserViewModel
 
     private var durationText: String = ""
     private var duration: Int = 0
@@ -51,31 +53,29 @@ class FDActivity : BaseActivity() {
         }
 
         setupActionBar()
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         accountNo = intent.getStringExtra(Constants.ACCOUNTNO)!!
         balance = DBUtils.with(this).getDB().userDao().getBalance(accountNo)
 
         setupSpinner()
 
-        binding.imgMoreInfo.setOnClickListener {
-            moreInfoDialog()
+    }
+
+    fun validateFD(view: View) {
+        view.hideKeyboard()
+
+        if(binding.etFdAmount.text!!.isEmpty()){
+            showErrorSnackBar(getString(R.string.error_fd_amount), true)
         }
-
-        binding.btnFdCreate.setOnClickListener {
-            it.hideKeyboard()
-
-            if(binding.etFdAmount.text!!.isEmpty()){
-                showErrorSnackBar(getString(R.string.error_fd_amount), true)
-            }
-            else if(binding.etFdAmount.text.toString().toDouble() > balance!!) {
-                showErrorSnackBar(getString(R.string.error_insufficient_balance), true)
-            }
-            else if (duration == 0){
-                showErrorSnackBar(getString(R.string.error_fill_duration), true)
-            }
-            else {
-                createFD()
-            }
+        else if(binding.etFdAmount.text.toString().toDouble() > balance!!) {
+            showErrorSnackBar(getString(R.string.error_insufficient_balance), true)
+        }
+        else if (duration == 0){
+            showErrorSnackBar(getString(R.string.error_fill_duration), true)
+        }
+        else {
+            createFD()
         }
     }
 
@@ -89,7 +89,8 @@ class FDActivity : BaseActivity() {
             LocalDate.now().toString()
         )
 
-        DBUtils.with(this).getDB().userDao().reduceMoney(accountNo, amount)
+        userViewModel.makeFD(this, accountNo, amount)
+
         saveReceiptDialog()
         showErrorSnackBar(getString(R.string.success_fd), false)
     }
@@ -147,7 +148,7 @@ class FDActivity : BaseActivity() {
         }
     }
 
-    private fun moreInfoDialog() {
+    fun moreInfoDialog(view: View) {
         val dialogBinding = layoutInflater.inflate(R.layout.rates_dialog, null)
         val ratesDialog = Dialog(this)
         ratesDialog.setContentView(dialogBinding)

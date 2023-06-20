@@ -5,9 +5,11 @@ import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import androidx.work.*
 import com.example.assignment3.databinding.ActivityTransferMoneyBinding
 import java.time.LocalDate
@@ -17,6 +19,8 @@ class TransferMoneyActivity : BaseActivity() {
     private lateinit var binding: ActivityTransferMoneyBinding
     private lateinit var accountNo: String
     private lateinit var transaction: Transactions
+    lateinit var userViewModel: UserViewModel
+
 
     private var balance: Double? = 0.0
 
@@ -37,17 +41,15 @@ class TransferMoneyActivity : BaseActivity() {
         }
 
         setupActionBar()
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         accountNo = intent.getStringExtra(Constants.ACCOUNTNO)!!
         balance = DBUtils.with(this).getDB().userDao().getBalance(accountNo)
 
-        binding.btnTransfer.setOnClickListener {
-            it.hideKeyboard()
-            validateTransfer()
-        }
     }
 
-    private fun validateTransfer() {
+    fun validateTransfer(view: View) {
+        view.hideKeyboard()
 
         if (binding.etTransferName.text!!.isEmpty()) {
             showErrorSnackBar(getString(R.string.error_transfer_name), true)
@@ -80,8 +82,7 @@ class TransferMoneyActivity : BaseActivity() {
                     showErrorSnackBar("IFSC No. does not match", true)
                 }
                 else {
-                    DBUtils.with(this).getDB().userDao()
-                        .transferMoney(accountNo, receiver, amount)
+                    userViewModel.transferMoney(this, accountNo, receiver, amount)
 
                     transaction = Transactions(
                         accountNo,

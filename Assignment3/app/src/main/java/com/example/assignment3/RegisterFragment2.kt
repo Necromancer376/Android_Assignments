@@ -35,19 +35,19 @@ class RegisterFragment2 : BaseFragment() {
 //            .observe(requireActivity()) {
 //                user = it
 //            }
+    }
 
-        binding.btnSaveUser.setOnClickListener {
-            it.hideKeyboard()
+    fun validate(view: View) {
+        view.hideKeyboard()
 
-            if(binding.etPincode.text.toString().length != 6) {
-                showErrorSnackBar(getString(R.string.error_pincode), true)
-            }
-            else if(binding.etPincode.text.toString() != binding.etConfirmPincode.text.toString()) {
-                showErrorSnackBar(getString(R.string.error_confirm_pincode), true)
-            }
-            else {
-                registerUser()
-            }
+        if(binding.etPincode.text.toString().length != 6) {
+            showErrorSnackBar(getString(R.string.error_pincode), true)
+        }
+        else if(binding.etPincode.text.toString() != binding.etConfirmPincode.text.toString()) {
+            showErrorSnackBar(getString(R.string.error_confirm_pincode), true)
+        }
+        else {
+            registerUser()
         }
     }
 

@@ -201,7 +201,8 @@
             android:paddingHorizontal="16dp"
             android:paddingVertical="9sp"
             android:text="Next"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:onClick="validateDetails" />
 
     </LinearLayout>
 </ScrollView>
