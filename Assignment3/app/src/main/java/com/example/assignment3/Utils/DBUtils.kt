@@ -1,4 +1,4 @@
-package com.example.assignment3
+package com.example.assignment3.Utils
 
 import android.content.Context
 import androidx.room.Room

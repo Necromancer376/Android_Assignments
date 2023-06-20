@@ -1,4 +1,4 @@
-package com.example.assignment3
+package com.example.assignment3.Activities
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.databinding.DataBindingUtil
-import com.example.assignment3.databinding.ActivityRegisterBinding
+import com.example.assignment3.R
+import com.example.assignment3.Fragments.RegisterFragment1
 
 class RegisterActivity : AppCompatActivity() {
 

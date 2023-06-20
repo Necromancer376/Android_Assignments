@@ -1,4 +1,4 @@
-package com.example.assignment3
+package com.example.assignment3.Activities
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -6,7 +6,6 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,12 +13,17 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
+import com.example.assignment3.*
+import com.example.assignment3.Models.FD
+import com.example.assignment3.Utils.Constants
+import com.example.assignment3.Utils.DBUtils
+import com.example.assignment3.Utils.DownloadWorker
+import com.example.assignment3.UserViewModel
 import com.example.assignment3.databinding.ActivityFdactivityBinding
 import kotlinx.android.synthetic.main.rates_dialog.view.*
 import java.time.LocalDate

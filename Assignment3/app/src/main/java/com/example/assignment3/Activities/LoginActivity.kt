@@ -1,18 +1,18 @@
-package com.example.assignment3
+package com.example.assignment3.Activities
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.webkit.WebView
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.databinding.DataBindingUtil
+import com.example.assignment3.Utils.Constants
+import com.example.assignment3.Utils.DBUtils
+import com.example.assignment3.R
+import com.example.assignment3.Models.User
 import com.example.assignment3.databinding.ActivityLoginBinding
-import kotlin.math.log2
 
 class LoginActivity : BaseActivity() {
 

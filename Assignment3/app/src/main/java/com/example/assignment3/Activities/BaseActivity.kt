@@ -1,12 +1,11 @@
-package com.example.assignment3
+package com.example.assignment3.Activities
 
 import android.content.Context
-import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.assignment3.R
 import com.google.android.material.snackbar.Snackbar
 
 open class BaseActivity : AppCompatActivity() {

@@ -1,17 +1,17 @@
-package com.example.assignment3
+package com.example.assignment3.Utils
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.*
+import com.example.assignment3.Models.User
 
 @Dao
 interface UserDAO {
 
     @Insert
-    fun insertUser(user:User)
+    fun insertUser(user: User)
 
     @Delete
-    fun deleteUser(user:User)
+    fun deleteUser(user: User)
 
     @Query("SELECT * FROM users WHERE accNo = :acc")
     fun getUser(acc: String): LiveData<List<User>>

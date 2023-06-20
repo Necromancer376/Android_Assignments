@@ -1,13 +1,15 @@
-package com.example.assignment3
+package com.example.assignment3.Fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.assignment3.Activities.LoginActivity
+import com.example.assignment3.Utils.Constants
+import com.example.assignment3.Utils.DBUtils
+import com.example.assignment3.R
 import com.example.assignment3.databinding.FragmentRegister2Binding
-import kotlinx.android.synthetic.main.fragment_register2.view.*
 
 
 class RegisterFragment2 : BaseFragment() {

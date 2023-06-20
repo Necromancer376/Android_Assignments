@@ -1,4 +1,4 @@
-package com.example.assignment3
+package com.example.assignment3.Activities
 
 import android.content.Intent
 import android.os.Build
@@ -13,9 +13,11 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
-import com.example.assignment3.databinding.ActivityLoginBinding
+import com.example.assignment3.*
+import com.example.assignment3.Utils.Constants
+import com.example.assignment3.Utils.DBUtils
+import com.example.assignment3.UserViewModel
 import com.example.assignment3.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 

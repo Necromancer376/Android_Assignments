@@ -1,4 +1,4 @@
-package com.example.assignment3
+package com.example.assignment3.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.example.assignment3.Utils.Constants
+import com.example.assignment3.Utils.DBUtils
+import com.example.assignment3.Models.User
+import com.example.assignment3.R
 import com.example.assignment3.databinding.FragmentRegister1Binding
 import java.lang.RuntimeException
 
