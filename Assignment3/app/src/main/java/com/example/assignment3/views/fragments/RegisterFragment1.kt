@@ -83,7 +83,7 @@ class RegisterFragment1 : BaseFragment() {
             transaction.addToBackStack(this.toString())
             transaction.commit()
         } catch (e: RuntimeException) {
-            showErrorSnackBar("Account Already Exists", true)
+            showErrorSnackBar(getString(R.string.error_account_exists), true)
         }
     }
 

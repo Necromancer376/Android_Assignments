@@ -85,7 +85,7 @@ class TransferMoneyActivity : BaseActivity() {
             }
             else {
                 if(it.first().ifscCode != binding.etTransferIfsc.text.toString()) {
-                    showErrorSnackBar("IFSC No. does not match", true)
+                    showErrorSnackBar(getString(R.string.error_ifsc_mismatch), true)
                 }
                 else {
                     userViewModel.transferMoney(this, accountNo, receiver, amount)
@@ -107,8 +107,8 @@ class TransferMoneyActivity : BaseActivity() {
 
     fun saveReceiptDialog() {
         val builder = AlertDialog.Builder(this)
-        builder.setMessage("Download Receipt of the Transaction")
-        builder.setTitle("Receipt Download")
+        builder.setMessage(getString(R.string.download_message_fd))
+        builder.setTitle(getString(R.string.download_receipt))
         builder.setCancelable(false)
 
         builder.setPositiveButton("Yes", (DialogInterface.OnClickListener { dialogInterface, i ->
@@ -117,8 +117,8 @@ class TransferMoneyActivity : BaseActivity() {
             val downloadWorkRequest = OneTimeWorkRequest.Builder(DownloadWorker::class.java)
             val data = Data.Builder()
             val filename = "transaction_" + transaction.id.toString() + ".txt"
-            data.putString("FILE_CONTENT", transaction.toString())
-            data.putString("FILE_NAME", filename)
+            data.putString(getString(R.string.file_content), transaction.toString())
+            data.putString(getString(R.string.file_name), filename)
             downloadWorkRequest.setInputData(data.build())
 
             WorkManager.getInstance(this).enqueue(downloadWorkRequest.build())

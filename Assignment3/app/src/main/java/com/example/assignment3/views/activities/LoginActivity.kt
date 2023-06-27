@@ -60,7 +60,7 @@ class LoginActivity : BaseActivity() {
                 if (loginCredentials == null) {
                     showErrorSnackBar(getString(R.string.error_invalid_credentials), true)
                 } else {
-                    showErrorSnackBar("Login Successful", false)
+                    showErrorSnackBar(getString(R.string.login_success), false)
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     intent.putExtra(Constants.ACCOUNTNO, accoutNo)
                     startActivity(intent)

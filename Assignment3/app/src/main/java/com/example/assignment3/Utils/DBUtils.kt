@@ -19,7 +19,7 @@ class DBUtils {
     constructor(context: Context) {
         database = Room.databaseBuilder(
             context,
-            UserDB::class.java, "BankDB"
+            UserDB::class.java, Constants.BANKDB
         )
             .allowMainThreadQueries()
             .build()

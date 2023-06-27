@@ -66,5 +66,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="file_content">FILE_CONTENT</string>
+    <string name="error_worker">error in worker</string>
+    <string name="file_name">FILE_NAME</string>
+    <string name="download_message_transaction">Download Receipt of the Transaction</string>
+    <string name="download_receipt">Download Receipt</string>
+    <string name="login_success">Login Successful</string>
+    <string name="error_ifsc_mismatch">IFSC No. does not match</string>
+    <string name="download_message_fd">Download Receipt of the FD</string>
+    <string name="error_account_exists">Account Already Exists</string>
 
 </resources>

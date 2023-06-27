@@ -101,8 +101,8 @@ class FDActivity : BaseActivity() {
 
     fun saveReceiptDialog() {
         val builder = AlertDialog.Builder(this)
-        builder.setMessage("Download Receipt of the Transaction")
-        builder.setTitle("Receipt Download")
+        builder.setMessage(getString(R.string.download_message_transaction))
+        builder.setTitle(getString(R.string.download_receipt))
         builder.setCancelable(false)
         builder.setPositiveButton("Yes", (DialogInterface.OnClickListener { dialogInterface, i ->
             Log.e("Dialog", "Yes")
@@ -110,8 +110,8 @@ class FDActivity : BaseActivity() {
             val downloadWorkRequest = OneTimeWorkRequest.Builder(DownloadWorker::class.java)
             val data = Data.Builder()
             val filename = "fd_" + fd.id.toString() + ".txt"
-            data.putString("FILE_CONTENT", fd.toString())
-            data.putString("FILE_NAME", filename)
+            data.putString(getString(R.string.file_content), fd.toString())
+            data.putString(getString(R.string.file_name), filename)
             downloadWorkRequest.setInputData(data.build())
 
             WorkManager.getInstance(this).enqueue(downloadWorkRequest.build())
