@@ -1,4 +1,4 @@
-package com.example.assignment3.Models
+package com.example.assignment3.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,11 +1,11 @@
-package com.example.assignment3.Fragments
+package com.example.assignment3.views.fragments
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.assignment3.Activities.LoginActivity
+import com.example.assignment3.views.activities.LoginActivity
 import com.example.assignment3.Utils.Constants
 import com.example.assignment3.Utils.DBUtils
 import com.example.assignment3.R

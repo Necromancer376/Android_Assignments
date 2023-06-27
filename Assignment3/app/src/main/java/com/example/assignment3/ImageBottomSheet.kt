@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -40,7 +41,7 @@ class ImageBottomSheet(val activity: Activity) : BottomSheetDialogFragment() {
 
         btn_gallery.setOnClickListener {
             var intent = Intent("android.provider.action.PICK_IMAGES")
-            startActivityForResult(intent, 101)
+            startForResult.launch(intent)
         }
 
         btn_camera.setOnClickListener {
@@ -56,15 +57,12 @@ class ImageBottomSheet(val activity: Activity) : BottomSheetDialogFragment() {
             image)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(resultCode == Activity.RESULT_OK) {
-            if(requestCode == 101) {
-                val uri = data?.data
-                profile.setImageURI(uri)
-                dismiss()
-            }
+    val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        result: ActivityResult ->
+        if(result.resultCode == Activity.RESULT_OK) {
+            val uri = result.data!!.data
+            profile.setImageURI(uri)
+            dismiss()
         }
     }
 }

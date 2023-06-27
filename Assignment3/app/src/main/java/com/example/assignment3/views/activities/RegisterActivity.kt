@@ -1,4 +1,4 @@
-package com.example.assignment3.Activities
+package com.example.assignment3.views.activities
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.assignment3.R
-import com.example.assignment3.Fragments.RegisterFragment1
+import com.example.assignment3.views.fragments.RegisterFragment1
 
 class RegisterActivity : AppCompatActivity() {
 

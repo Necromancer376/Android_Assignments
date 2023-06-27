@@ -3,7 +3,7 @@ package com.example.assignment3
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.assignment3.Models.User
+import com.example.assignment3.model.User
 import com.example.assignment3.Utils.DBUtils
 
 class UserViewModel: ViewModel() {

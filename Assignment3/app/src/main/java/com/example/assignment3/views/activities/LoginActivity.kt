@@ -1,4 +1,4 @@
-package com.example.assignment3.Activities
+package com.example.assignment3.views.activities
 
 import android.content.Intent
 import android.os.Build
@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.assignment3.Utils.Constants
 import com.example.assignment3.Utils.DBUtils
 import com.example.assignment3.R
-import com.example.assignment3.Models.User
+import com.example.assignment3.model.User
 import com.example.assignment3.databinding.ActivityLoginBinding
 
 class LoginActivity : BaseActivity() {

@@ -2,8 +2,7 @@ package com.example.assignment3.Utils
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.assignment3.Models.User
-import com.example.assignment3.Utils.UserDAO
+import com.example.assignment3.model.User
 
 @Database(
     entities = [User::class],

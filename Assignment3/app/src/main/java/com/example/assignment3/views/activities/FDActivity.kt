@@ -1,4 +1,4 @@
-package com.example.assignment3.Activities
+package com.example.assignment3.views.activities
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -19,7 +19,7 @@ import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.example.assignment3.*
-import com.example.assignment3.Models.FD
+import com.example.assignment3.model.FD
 import com.example.assignment3.Utils.Constants
 import com.example.assignment3.Utils.DBUtils
 import com.example.assignment3.Utils.DownloadWorker

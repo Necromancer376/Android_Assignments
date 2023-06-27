@@ -1,4 +1,4 @@
-package com.example.assignment3.Activities
+package com.example.assignment3.views.activities
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -11,7 +11,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.work.*
-import com.example.assignment3.Models.Transactions
+import com.example.assignment3.model.Transactions
 import com.example.assignment3.R
 import com.example.assignment3.Utils.Constants
 import com.example.assignment3.Utils.DBUtils

@@ -1,30 +1,33 @@
-package com.example.assignment3.Activities
+package com.example.assignment3.views.fragments
 
 import android.content.Context
+import android.text.TextUtils
+import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.example.assignment3.R
 import com.google.android.material.snackbar.Snackbar
 
-open class BaseActivity : AppCompatActivity() {
+open class BaseFragment : Fragment() {
 
     fun showErrorSnackBar(msg: String, errorMsg: Boolean) {
-        val snackbar = Snackbar.make(findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG)
+        val snackbar = Snackbar.make(requireActivity().findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG)
         val snackbarView = snackbar.view
 
-        if (errorMsg) {
+        if(errorMsg) {
             snackbarView.setBackgroundColor(
                 ContextCompat.getColor(
-                    this,
+                    requireContext(),
                     R.color.colorSnackbarError
                 )
             )
-        } else {
+        }
+        else {
             snackbarView.setBackgroundColor(
                 ContextCompat.getColor(
-                    this,
+                    requireContext(),
                     R.color.colorSnackbarSuccess
                 )
             )
@@ -32,7 +35,8 @@ open class BaseActivity : AppCompatActivity() {
         snackbar.show()
     }
 
-
+    fun String.isValidEmail() =
+        !TextUtils.isEmpty(this) && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
     fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

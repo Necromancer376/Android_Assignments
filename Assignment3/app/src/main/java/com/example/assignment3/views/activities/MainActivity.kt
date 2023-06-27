@@ -1,4 +1,4 @@
-package com.example.assignment3.Activities
+package com.example.assignment3.views.activities
 
 import android.content.Intent
 import android.os.Build

@@ -2,7 +2,7 @@ package com.example.assignment3.Utils
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.assignment3.Models.User
+import com.example.assignment3.model.User
 
 @Dao
 interface UserDAO {
