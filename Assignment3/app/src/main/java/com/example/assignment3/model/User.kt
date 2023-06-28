@@ -9,7 +9,7 @@ data class User(
     val crnNo: String,
     @PrimaryKey(autoGenerate = false) val accNo: String,
     val phoneNo: String,
-    val type: String,
+    var type: String,
     val email: String,
     val ifscCode: String,
     var pincode: String = "",
