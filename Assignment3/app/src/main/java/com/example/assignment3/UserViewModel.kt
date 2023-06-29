@@ -24,4 +24,13 @@ class UserViewModel: ViewModel() {
     fun makeFD(context: Context, accountNo: String, amount: Double) {
         DBUtils.with(context).getDB().userDao().reduceMoney(accountNo, amount)
     }
+
+    @Bindable
+    fun getUser(): MutableLiveData<User> {
+        return currentUser
+    }
+
+    fun setUser(user: User) {
+        currentUser.value = user
+    }
 }

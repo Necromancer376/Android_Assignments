@@ -9,10 +9,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModelProvider
 import com.example.assignment3.Utils.Constants
 import com.example.assignment3.Utils.DBUtils
 import com.example.assignment3.model.User
 import com.example.assignment3.R
+import com.example.assignment3.UserViewModel
 import com.example.assignment3.databinding.FragmentRegister1Binding
 import java.lang.RuntimeException
 import java.util.*
@@ -23,6 +25,7 @@ class RegisterFragment1 : BaseFragment() {
     private lateinit var binding: FragmentRegister1Binding
     private var acc_type = "Current"
     var mUser = ObservableField<User>()
+    lateinit var userViewModel: UserViewModel
 
 
     override fun onCreateView(
@@ -38,6 +41,7 @@ class RegisterFragment1 : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         binding.user = mUser.get()
 
