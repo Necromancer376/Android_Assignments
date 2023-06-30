@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Assignment4</string>
+    <string name="team">Team:</string>
+    <string name="real_name">Real Name:</string>
+    <string name="first_appearance">First Appearance:</string>
+    <string name="created_by">Created By:</string>
+    <string name="publisher">Publisher:</string>
+    <string name="bio">Bio:</string>
+</resources>
