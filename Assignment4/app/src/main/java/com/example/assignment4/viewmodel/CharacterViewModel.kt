@@ -36,4 +36,12 @@ class CharacterViewModel: ViewModel() {
             }
         }
     }
+
+    fun getCharacter(pos: Int): Character? {
+        return characterList.value?.get(pos)
+    }
+
+    fun getImageUrl(pos: Int): String {
+        return characterList.value!!.get(pos).imageurl
+    }
 }
