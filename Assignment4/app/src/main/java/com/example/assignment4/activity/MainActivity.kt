@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.assignment4.adapter.CharacterAdapter
 import com.example.assignment4.databinding.ActivityMainBinding
 import com.example.assignment4.viewmodel.CharacterViewModel
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +19,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
-        viewModel.setCharacterList()
+        runBlocking {
+            viewModel.setCharacterList()
+        }
 
         binding.rvMain.adapter = viewModel.adapter
     }

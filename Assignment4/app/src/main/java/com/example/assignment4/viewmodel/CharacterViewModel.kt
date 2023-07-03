@@ -20,7 +20,7 @@ class CharacterViewModel: ViewModel() {
         throwable.printStackTrace()
     }
 
-    fun setCharacterList() {
+    suspend fun setCharacterList() {
         viewModelScope.launch(Dispatchers.IO) {
             val response = ServiceGenerator.api.getCharacters()
 

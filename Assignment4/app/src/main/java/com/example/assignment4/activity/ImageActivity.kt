@@ -13,7 +13,7 @@ class ImageActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityImageBinding
     private lateinit var viewModel: CharacterViewModel
-//    private lateinit var character: Character
+    private lateinit var character: Character
     private var position: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,11 +23,11 @@ class ImageActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
 
-//        character = intent.getSerializableExtra(Constants.CHARACTER_KEY) as Character
-        position = intent.getIntExtra(Constants.CHARACTER_KEY, 0)
+        character = intent.getSerializableExtra(Constants.CHARACTER_KEY) as Character
+//        position = intent.getIntExtra(Constants.CHARACTER_KEY, 0)
 
-//        var url = character.imageurl
-        var url = viewModel.getImageUrl(position)
+        var url = character.imageurl
+//        var url = viewModel.getImageUrl(position)
         url = url.replace("https", "http")
 
         Glide.with(this@ImageActivity)
@@ -35,7 +35,8 @@ class ImageActivity : AppCompatActivity() {
             .fitCenter()
             .into(binding.imgCharacterActivity)
 
-        binding.character = viewModel.getCharacter(position)
+        binding.character = character
+//        binding.character = viewModel.getCharacter(position)
 
     }
 }

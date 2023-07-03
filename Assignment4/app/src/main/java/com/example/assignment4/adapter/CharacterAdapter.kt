@@ -48,15 +48,15 @@ class CharacterAdapter : RecyclerView.Adapter<CharacterAdapter.MyViewHolder>() {
 
         holder.binding.imgCharacter.setOnClickListener {
             val intent = Intent(context, ImageActivity::class.java)
-//            intent.putExtra(Constants.CHARACTER_KEY, item)
-            intent.putExtra(Constants.CHARACTER_KEY, position)
+            intent.putExtra(Constants.CHARACTER_KEY, item)
+//            intent.putExtra(Constants.CHARACTER_KEY, position)
             context.startActivity(intent)
         }
 
         holder.binding.llText.setOnClickListener {
             val intent = Intent(context, DetailsActivity::class.java)
-//            intent.putExtra(Constants.CHARACTER_KEY, item)
-            intent.putExtra(Constants.CHARACTER_KEY, position)
+            intent.putExtra(Constants.CHARACTER_KEY, item)
+//            intent.putExtra(Constants.CHARACTER_KEY, position)
             context.startActivity(intent)
         }
     }
