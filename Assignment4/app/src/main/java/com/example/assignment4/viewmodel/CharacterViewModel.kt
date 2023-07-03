@@ -34,6 +34,7 @@ class CharacterViewModel: ViewModel() {
             else {
                 Log.e(TAG, "Failed")
             }
+            characterList
         }
     }
 
