@@ -35,10 +35,9 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun loadImage() {
-        var url = character.imageurl
-        url = url.replace("https", "http")
+        val url = Constants.formatUrl(character.imageurl)
 
-        Glide.with(this@DetailsActivity)
+        Glide.with(this)
             .load(url)
             .fitCenter()
             .into(binding.imgCharacterDetails)
