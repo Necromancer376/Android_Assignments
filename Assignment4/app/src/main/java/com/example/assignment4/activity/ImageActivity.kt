@@ -26,17 +26,17 @@ class ImageActivity : AppCompatActivity() {
         character = intent.getSerializableExtra(Constants.CHARACTER_KEY) as Character
 //        position = intent.getIntExtra(Constants.CHARACTER_KEY, 0)
 
+        loadImage()
+        binding.character = character
+    }
+
+    fun loadImage() {
         var url = character.imageurl
-//        var url = viewModel.getImageUrl(position)
         url = url.replace("https", "http")
 
         Glide.with(this@ImageActivity)
             .load(url)
             .fitCenter()
             .into(binding.imgCharacterActivity)
-
-        binding.character = character
-//        binding.character = viewModel.getCharacter(position)
-
     }
 }
