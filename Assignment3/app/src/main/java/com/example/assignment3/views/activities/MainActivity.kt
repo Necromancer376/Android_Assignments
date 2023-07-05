@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         accountNo = intent.getStringExtra(Constants.ACCOUNTNO)!!
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-        DBUtils.with(this).getDB().userDao().getUser(accountNo).observe(this) {
+        userViewModel.getUser(this, accountNo).observe(this) {
             userViewModel.currentUser.value = it.first()
 
             binding.viewModel = userViewModel
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        DBUtils.with(this).getDB().userDao().getUser(accountNo).observe(this) {
+        userViewModel.getUser(this, accountNo).observe(this) {
             userViewModel.currentUser.value = it.first()
 
             binding.viewModel = userViewModel

@@ -50,7 +50,7 @@ class TransferMoneyActivity : BaseActivity() {
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         accountNo = intent.getStringExtra(Constants.ACCOUNTNO)!!
-        balance = DBUtils.with(this).getDB().userDao().getBalance(accountNo)
+        balance = userViewModel.getBalance(this, accountNo)
 
     }
 
@@ -79,7 +79,7 @@ class TransferMoneyActivity : BaseActivity() {
         val receiver = binding.etTransferAccount.text.toString()
         val amount = binding.etTransferAmount.text.toString().toDouble()
 
-        DBUtils.with(this).getDB().userDao().getUser(receiver).observe(this) {
+        userViewModel.getUser(this, receiver).observe(this) {
             if (it.isEmpty()) {
                 showErrorSnackBar(getString(R.string.error_no_user_exists), true)
             }
@@ -98,42 +98,13 @@ class TransferMoneyActivity : BaseActivity() {
                     )
 
                     Log.e("transaction", transaction.toString())
-                    saveReceiptDialog()
+                    userViewModel.saveReceiptDialog(this, transaction)
                     showErrorSnackBar(getString(R.string.success_transfer), false)
                 }
             }
         }
     }
 
-    fun saveReceiptDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage(getString(R.string.download_message_fd))
-        builder.setTitle(getString(R.string.download_receipt))
-        builder.setCancelable(false)
-
-        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener { dialogInterface, i ->
-            Log.e("Dialog", "Yes")
-
-            val downloadWorkRequest = OneTimeWorkRequest.Builder(DownloadWorker::class.java)
-            val data = Data.Builder()
-            val filename = "transaction_" + transaction.id.toString() + ".txt"
-            data.putString(getString(R.string.file_content), transaction.toString())
-            data.putString(getString(R.string.file_name), filename)
-            downloadWorkRequest.setInputData(data.build())
-
-            WorkManager.getInstance(this).enqueue(downloadWorkRequest.build())
-
-            dialogInterface.cancel()
-        }))
-
-        builder.setNegativeButton("No", (DialogInterface.OnClickListener { dialogInterface, i ->
-            Log.e("Dialog", "Yes")
-            dialogInterface.cancel()
-        }))
-
-        val downloadDialog = builder.create()
-        downloadDialog.show()
-    }
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarTransferActivity)

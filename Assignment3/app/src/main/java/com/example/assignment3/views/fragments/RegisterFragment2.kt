@@ -6,10 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.example.assignment3.views.activities.LoginActivity
 import com.example.assignment3.Utils.Constants
 import com.example.assignment3.Utils.DBUtils
 import com.example.assignment3.R
+import com.example.assignment3.UserViewModel
 import com.example.assignment3.databinding.FragmentRegister2Binding
 
 
@@ -17,6 +19,7 @@ class RegisterFragment2 : BaseFragment() {
 
     private lateinit var binding: FragmentRegister2Binding
     private lateinit var accountNumber: String
+    lateinit var userViewModel: UserViewModel
 
 //    private lateinit var user: User
 
@@ -30,6 +33,8 @@ class RegisterFragment2 : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+
 
         accountNumber = arguments?.getString(Constants.ACCOUNTNO, "").toString()
 
@@ -59,7 +64,7 @@ class RegisterFragment2 : BaseFragment() {
 
     private fun registerUser() {
         val pincode = binding.etPincode.text.toString()
-        DBUtils.with(requireContext()).getDB().userDao().setPincode(accountNumber!!, pincode)
+        userViewModel.setPincode(requireContext(), accountNumber, pincode)
 
         val intent = Intent(requireContext(), LoginActivity::class.java)
         startActivity(intent)

@@ -60,7 +60,7 @@ class FDActivity : BaseActivity() {
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         accountNo = intent.getStringExtra(Constants.ACCOUNTNO)!!
-        balance = DBUtils.with(this).getDB().userDao().getBalance(accountNo)
+        balance = userViewModel.getBalance(this, accountNo)
 
         setupSpinner()
 
@@ -95,37 +95,8 @@ class FDActivity : BaseActivity() {
 
         userViewModel.makeFD(this, accountNo, amount)
 
-        saveReceiptDialog()
+        userViewModel.saveReceiptDialog(this, fd)
         showErrorSnackBar(getString(R.string.success_fd), false)
-    }
-
-    fun saveReceiptDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage(getString(R.string.download_message_transaction))
-        builder.setTitle(getString(R.string.download_receipt))
-        builder.setCancelable(false)
-        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener { dialogInterface, i ->
-            Log.e("Dialog", "Yes")
-
-            val downloadWorkRequest = OneTimeWorkRequest.Builder(DownloadWorker::class.java)
-            val data = Data.Builder()
-            val filename = "fd_" + fd.id.toString() + ".txt"
-            data.putString(getString(R.string.file_content), fd.toString())
-            data.putString(getString(R.string.file_name), filename)
-            downloadWorkRequest.setInputData(data.build())
-
-            WorkManager.getInstance(this).enqueue(downloadWorkRequest.build())
-
-            dialogInterface.cancel()
-        }))
-
-        builder.setNegativeButton("No", (DialogInterface.OnClickListener { dialogInterface, i ->
-            Log.e("Dialog", "Yes")
-            dialogInterface.cancel()
-        }))
-
-        val downloadDialog = builder.create()
-        downloadDialog.show()
     }
 
     private fun setupSpinner() {
