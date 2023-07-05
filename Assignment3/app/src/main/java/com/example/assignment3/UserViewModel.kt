@@ -50,6 +50,14 @@ class UserViewModel: ViewModel(), Observable {
         return DBUtils.with(context).getDB().userDao().getBalance(accountNo)
     }
 
+    fun loginValidation(context: Context, accountNo: String, pincode: String): User {
+        return DBUtils.with(context).getDB().userDao().loginValidation(accountNo, pincode)
+    }
+
+    fun insertUser(context: Context, user: User) {
+        DBUtils.with(context).getDB().userDao().insertUser(user)
+    }
+
 
     fun saveReceiptDialog(context: Context, transaction: Transactions) {
         val builder = AlertDialog.Builder(context)

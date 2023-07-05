@@ -107,7 +107,7 @@ class RegisterFragment1 : BaseFragment() {
         Log.e("User", user.toString())
 
         try {
-            DBUtils.with(requireContext()).getDB().userDao().insertUser(user)
+            userViewModel.insertUser(requireContext(), user)
 
             val bundle = Bundle()
             bundle.putString(Constants.ACCOUNTNO, binding.etAcc.text.toString())

@@ -8,21 +8,26 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import com.example.assignment3.Utils.Constants
 import com.example.assignment3.Utils.DBUtils
 import com.example.assignment3.R
+import com.example.assignment3.UserViewModel
 import com.example.assignment3.model.User
 import com.example.assignment3.databinding.ActivityLoginBinding
 
 class LoginActivity : BaseActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var userViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -48,14 +53,7 @@ class LoginActivity : BaseActivity() {
         else {
             try {
                 var loginCredentials: User? = null
-                loginCredentials = DBUtils.with(this).getDB().userDao()
-                    .loginValidation(accoutNo, pincode)
-//                    .observe(this) {
-//                        loginCredentials = it
-//                        Log.e("Login it", it.toString())
-//                    }
-
-                Log.e("Login variable", loginCredentials.toString())
+                loginCredentials = userViewModel.loginValidation(this, accoutNo, pincode)
 
                 if (loginCredentials == null) {
                     showErrorSnackBar(getString(R.string.error_invalid_credentials), true)
