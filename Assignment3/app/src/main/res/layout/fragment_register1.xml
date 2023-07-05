@@ -82,7 +82,7 @@
                     android:background="#00000000"
                     android:maxLines="1"
                     android:textColor="@color/black"
-                    android:text="@={user.accNo}" />
+                    android:text="@={user.currentUser.accNo}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,7 +106,7 @@
                     android:background="#00000000"
                     android:maxLines="1"
                     android:textColor="@color/black"
-                    android:text="@={user.ifscCode}"/>
+                    android:text="@={user.currentUser.ifscCode}"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -130,7 +130,7 @@
                     android:background="#00000000"
                     android:maxLines="1"
                     android:textColor="@color/black"
-                    android:text="@={user.crnNo}"/>
+                    android:text="@={user.currentUser.crnNo}"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -155,7 +155,7 @@
                     android:inputType="number"
                     android:maxLines="1"
                     android:textColor="@color/black"
-                    android:text="@={user.phoneNo}" />
+                    android:text="@={user.currentUser.phoneNo}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -179,7 +179,7 @@
                     android:background="#00000000"
                     android:maxLines="1"
                     android:textColor="@color/black"
-                    android:text="@={user.email}"/>
+                    android:text="@={user.currentUser.email}"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -215,8 +215,7 @@
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="9sp"
                 android:text="Next"
-                android:textSize="18sp"
-                android:onClick="validateDetails" />
+                android:textSize="18sp" />
 
         </LinearLayout>
     </ScrollView>

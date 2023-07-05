@@ -1,17 +1,28 @@
 package com.example.assignment3.model
 
+import androidx.databinding.BaseObservable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "users")
 data class User(
-    val name: String,
-    val crnNo: String,
-    @PrimaryKey(autoGenerate = false) val accNo: String,
-    val phoneNo: String,
+    var name: String,
+    var crnNo: String,
+    @PrimaryKey(autoGenerate = false) var accNo: String,
+    var phoneNo: String,
     var type: String,
-    val email: String,
-    val ifscCode: String,
+    var email: String,
+    var ifscCode: String,
     var pincode: String = "",
     var balance: Double = 100.0
 )
+//    : BaseObservable() {
+//    var name: String = " "
+//    var crnNo: String= " "
+//    var phoneNo: String= " "
+//    var type: String= " "
+//    var email: String= " "
+//    var ifscCode: String= " "
+//    var pincode: String = ""
+//    var balance: Double = 100.0
+//}

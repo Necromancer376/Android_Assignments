@@ -1,6 +1,7 @@
 package com.example.assignment3.views.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,6 +35,8 @@ class RegisterFragment1 : BaseFragment() {
     ): View? {
 
         binding = FragmentRegister1Binding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+
         return binding.root
     }
 
@@ -43,25 +46,45 @@ class RegisterFragment1 : BaseFragment() {
         requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-        binding.user = mUser.get()
+        binding.user = userViewModel
+        userViewModel.currentUser.value = User("", "", "", "", "", "", "")
 
         setupSpinner()
+
+        binding.btnNextRegister.setOnClickListener {
+            validateDetails(it)
+        }
     }
 
     fun validateDetails(view: View) {
         view.hideKeyboard()
 
-        if (binding.etName.text!!.length < 4)
+//        if (binding.etName.text!!.length < 4)
+//            showErrorSnackBar(getString(R.string.error_name), true)
+//        else if (binding.etAcc.text!!.length != 11)
+//            showErrorSnackBar(getString(R.string.error_account), true)
+//        else if (binding.etCrn.text!!.length != 9)
+//            showErrorSnackBar(getString(R.string.error_crn), true)
+//        else if (binding.etIfsc.text!!.length != 11)
+//            showErrorSnackBar(getString(R.string.error_ifsc), true)
+//        else if (binding.etPhone.text!!.length != 10)
+//            showErrorSnackBar(getString(R.string.error_phone), true)
+//        else if (binding.etEmail.text!!.isEmpty() || !binding.etEmail.text.toString().isValidEmail())
+//            showErrorSnackBar(getString(R.string.error_email), true)
+//        else {
+//            addUser()
+//        }
+        if (userViewModel.currentUser.value!!.name.length < 4)
             showErrorSnackBar(getString(R.string.error_name), true)
-        else if (binding.etAcc.text!!.length != 11)
+        else if (userViewModel.currentUser.value!!.accNo.length != 11)
             showErrorSnackBar(getString(R.string.error_account), true)
-        else if (binding.etCrn.text!!.length != 9)
+        else if (userViewModel.currentUser.value!!.crnNo.length != 9)
             showErrorSnackBar(getString(R.string.error_crn), true)
-        else if (binding.etIfsc.text!!.length != 11)
+        else if (userViewModel.currentUser.value!!.ifscCode.length != 11)
             showErrorSnackBar(getString(R.string.error_ifsc), true)
-        else if (binding.etPhone.text!!.length != 10)
+        else if (userViewModel.currentUser.value!!.phoneNo.length != 10)
             showErrorSnackBar(getString(R.string.error_phone), true)
-        else if (binding.etEmail.text!!.isEmpty() || !binding.etEmail.text.toString().isValidEmail())
+        else if (userViewModel.currentUser.value!!.email.isEmpty() || !userViewModel.currentUser.value!!.email.isValidEmail())
             showErrorSnackBar(getString(R.string.error_email), true)
         else {
             addUser()
@@ -80,8 +103,8 @@ class RegisterFragment1 : BaseFragment() {
 //            binding.etIfsc.text.toString()
 //        )
 
-        val user = mUser.get()
-        user!!.type = acc_type
+        val user = userViewModel.currentUser.value!!
+        Log.e("User", user.toString())
 
         try {
             DBUtils.with(requireContext()).getDB().userDao().insertUser(user)
@@ -120,5 +143,10 @@ class RegisterFragment1 : BaseFragment() {
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {}
             }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
     }
 }

@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun toFDActivity(view: View) {
-        val intent = Intent(this@MainActivity, TransferMoneyActivity::class.java)
+        val intent = Intent(this@MainActivity, FDActivity::class.java)
         intent.putExtra(Constants.ACCOUNTNO, accountNo)
         startActivity(intent)
     }

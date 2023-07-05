@@ -2,17 +2,21 @@ package com.example.assignment3
 
 import android.content.Context
 import androidx.databinding.Bindable
+import androidx.databinding.Observable
+import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.assignment3.model.User
 import com.example.assignment3.Utils.DBUtils
 
-class UserViewModel: ViewModel() {
+class UserViewModel: ViewModel(), Observable {
 
     val currentUser: MutableLiveData<User> by lazy {
         MutableLiveData<User>()
     }
+//
+//    val currentUser = MutableLiveData<User>()
 
     fun transferMoney(context: Context, accountNo: String, receiver: String, amount: Double) {
         DBUtils.with(context).getDB().userDao()
@@ -25,12 +29,13 @@ class UserViewModel: ViewModel() {
         DBUtils.with(context).getDB().userDao().reduceMoney(accountNo, amount)
     }
 
-    @Bindable
-    fun getUser(): MutableLiveData<User> {
-        return currentUser
+    private val callbacks: PropertyChangeRegistry by lazy { PropertyChangeRegistry()}
+
+    override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
+        callbacks.add(callback)
     }
 
-    fun setUser(user: User) {
-        currentUser.value = user
+    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
+        callbacks.remove(callback)
     }
 }
